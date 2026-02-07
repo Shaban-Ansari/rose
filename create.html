@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Happy Rose Day 🌹</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      height: 100vh;
+      background: linear-gradient(135deg, #ff8fb1, #ff5fa2);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: #fff;
+      text-align: center;
+      overflow: hidden;
+      cursor: pointer;
+    }
+
+    /* Card */
+    .card {
+      position: relative;
+      z-index: 10;
+      background: rgba(255, 255, 255, 0.18);
+      backdrop-filter: blur(12px);
+      padding: 32px 26px;
+      border-radius: 22px;
+      max-width: 360px;
+      box-shadow: 0 12px 35px rgba(0,0,0,0.25);
+      animation: fadeIn 1.2s ease;
+    }
+
+    h1 {
+      font-size: 2rem;
+      margin-bottom: 10px;
+    }
+
+    .roses {
+      font-size: 1.9rem;
+      margin: 15px 0;
+    }
+
+    p {
+      font-size: 1.05rem;
+      line-height: 1.6;
+    }
+
+    .pickup {
+      margin-top: 18px;
+      font-style: italic;
+      font-weight: 500;
+      color: #fff0f5;
+    }
+
+    footer {
+      margin-top: 20px;
+      font-size: 0.8rem;
+      opacity: 0.85;
+    }
+
+    /* Falling Roses */
+    .rose {
+      position: absolute;
+      top: -50px;
+      font-size: 1.6rem;
+      animation: fall linear infinite;
+      opacity: 0.95;
+      pointer-events: none;
+    }
+
+    @keyframes fall {
+      0% {
+        transform: translateY(-50px) rotate(0deg);
+      }
+      100% {
+        transform: translateY(110vh) rotate(360deg);
+      }
+    }
+
+    /* Heart Burst */
+    .heart {
+      position: absolute;
+      font-size: 1.2rem;
+      animation: burst 1s ease-out forwards;
+      pointer-events: none;
+    }
+
+    @keyframes burst {
+      0% {
+        transform: translate(0, 0) scale(1);
+        opacity: 1;
+      }
+      100% {
+        transform: translate(var(--x), var(--y)) scale(1.8);
+        opacity: 0;
+      }
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Falling Roses -->
+  <script>
+    const roseCount = 30;
+
+    for (let i = 0; i < roseCount; i++) {
+      const rose = document.createElement("div");
+      rose.className = "rose";
+      rose.innerText = "🌹";
+      rose.style.left = Math.random() * 100 + "vw";
+      rose.style.animationDuration = 4 + Math.random() * 6 + "s";
+      rose.style.fontSize = 1 + Math.random() * 1.8 + "rem";
+      rose.style.animationDelay = Math.random() * 5 + "s";
+      document.body.appendChild(rose);
+    }
+  </script>
+
+  <!-- Click Heart Burst -->
+  <script>
+    document.addEventListener("click", function(e) {
+      for (let i = 0; i < 8; i++) {
+        const heart = document.createElement("div");
+        heart.className = "heart";
+        heart.innerText = "💖";
+
+        const x = (Math.random() - 0.5) * 120 + "px";
+        const y = (Math.random() - 0.5) * 120 + "px";
+
+        heart.style.left = e.clientX + "px";
+        heart.style.top = e.clientY + "px";
+        heart.style.setProperty("--x", x);
+        heart.style.setProperty("--y", y);
+
+        document.body.appendChild(heart);
+
+        setTimeout(() => heart.remove(), 1000);
+      }
+    });
+  </script>
+
+  <div class="card">
+    <h1>Happy Rose Day 🌹</h1>
+
+    <div class="roses">
+      🌹🌹🌹🌹🌹
+    </div>
+
+    <p>
+      Some people give roses today.<br>
+      I just thought I’d give you a reason to smile.
+    </p>
+
+    <p class="pickup">
+      “Roses are temporary… the effect you have on me isn’t.” 💖
+    </p>
+
+    <footer>
+      Tap anywhere & let the hearts speak 💌
+    </footer>
+  </div>
+
+</body>
+</html>
